@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content1 %}
+<div class="content-section menucontent">
+   <form action="{{url_for('createproject')}}" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <legend class="border-bottom mb-4">New Post</legend>
+            <label style="font-size: 16px">{{ form.projecttitle.label(class="form-control-label") }}</label>
+            {{ form.projecttitle(class="form-control form-control-sm") }}
+        </div>
+    
+        <div class="form-group">
+            <label style="font-size: 16px">{{ form.pmetadata.label(class="form-control-label") }}</label>
+            {{form.pmetadata(cols="5", rows="10", maxlength="250", class="form-control form-control-sm wt-resize")}}
+        </div>
+
+        <div class="form-group">
+            <label style="font-size: 16px">{{ form.pdescription.label(class="form-control-label") }}</label>
+            {{form.pdescription(cols="5", rows="50", class="form-control form-control-sm wt-resize")}}
+        </div>
+        <div class="form-group">
+            <label for="inputFile">File input</label>
+            <input type="file" name="inputFile">
+        </div>
+        <button type="submit">Submit</button>     
+    </form>
+</div>
+{% endblock %}
+{% block content %}
+<div class="menucontent">
+    <h2>This is about page you can write about anyting here.</h2>
+</div>
+{% endblock content %}

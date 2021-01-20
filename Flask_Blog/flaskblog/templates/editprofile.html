@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block content1 %}
+<div class="content-section menucontent">
+    <legend class="border-bottom mb-4" style="text-align: center">Your Details</legend>
+    <h5 style="text-align: left">User Id: <lable class="text-muted">{{ current_user.userloginid}}</lable>
+    </h5>
+    <h5 style="text-align: left">Email Id: <lable class="text-muted">{{ current_user.email}}</lable>
+    </h5>
+    <h5 style="text-align: left">First Name: <lable class="text-muted">{{ current_user.firstname}}</lable>
+    </h5>
+    <h5 style="text-align: left">Last Name: <lable class="text-muted">{{ current_user.lastname}}</lable>
+    </h5>
+    <h5 style="text-align: left">Profession: <lable class="text-muted">{{ current_user.profession}}</lable>
+    </h5>
+    <h5 style="text-align: left">College Id: <lable class="text-muted">{{ current_user.collegeid}}</lable>
+    </h5>
+</div>
+<div class="content-section menucontent">
+    <form action="{{url_for('updateprofile')}}" method="post">
+        <legend class="border-bottom mb-4" style="text-align: center">Update Your Details</legend>
+        <input type="radio" name="gender" id="Male" value="Male" required="" > <label style="font-size: 16px">Male</label></input>
+        <input type="radio" name="gender" id="Female" value="Female" required=""> <label style="font-size: 16px">Female</label> </input><br>
+        <select name='drop_course'>
+               <option value=""> select any course</option>
+             {% for each in dropdown_list1 %}
+                <option value="{{each}}"> {{each}} </option>
+             {% endfor %}
+         </select>
+         <select name='drop_degree'>
+            <option value=""> select any degree</option>
+             {% for each in dropdown_list2 %}
+               <option value="{{each}}"> {{each}} </option>
+             {% endfor %}
+         </select>
+         <select name='drop_country'>
+            <option value=""> select any country</option>
+             {% for each in dropdown_list3 %}
+               <option value="{{each}}"> {{each}} </option>
+             {% endfor %}
+         </select>
+            <div class="form-group">
+                <label style="font-size: 16px">{{ form.intrest1.label(class="form-control-label") }}</label>
+               {{ form.intrest1(class="form-control form-control-sm") }}
+            </div>
+            <div class="form-group">
+                <label style="font-size: 16px">{{ form.intrest2.label(class="form-control-label") }}</label>
+                {{ form.intrest2(class="form-control form-control-sm") }}
+            </div>
+            <div class="form-group">
+                <label style="font-size: 16px">{{ form.intrest3.label(class="form-control-label") }}</label>
+                {{ form.intrest3(class="form-control form-control-sm") }}
+
+            </div>
+            <div class="form-group">
+                <label style="font-size: 16px">{{ form.intrest4.label(class="form-control-label") }}</label>
+                {{ form.intrest4(class="form-control form-control-sm") }}
+            </div>
+            <div class="form-group">
+                <label style="font-size: 16px">{{ form.intrest5.label(class="form-control-label") }}</label>
+                {{ form.intrest5(class="form-control form-control-sm") }}
+            </div>
+
+        <div class="form-group">
+            <label style="font-size: 16px">{{ form.lnkdurl.label(class="form-control-label") }}</label>
+            {{ form.lnkdurl(class="form-control form-control-sm") }}
+        </div>
+        <div class="form-group">
+            <label style="font-size: 16px">{{ form.ghuburl.label(class="form-control-label") }}</label>
+            {{ form.ghuburl(class="form-control form-control-sm") }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% block content %}
+<div class="menucontent">
+    <h2>This is about page you can write about anyting here.</h2>
+</div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content1 %}
+<div class="content-section menucontent">
+    <h2 style="text-align: center">Projects</h2>
+    {% for project in projects.items %}
+        <article class="media content-section">
+          <div class="media-body">
+            <h2><a class="article-title" href="{{url_for('userproject', project_id=project.id)}}">{{ project.projecttitle }}</a></h2>
+            <p class="article-content">{{ project.pmetadata }}</p>
+          </div>
+        </article>
+    {% endfor %}
+    {% for page_num in projects.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+            {% if projects.page == page_num %}
+                <a class="btn btn-info mb-4" href="{{ url_for('allprojects', page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+                <a class="btn btn-outline-info mb-4" href="{{ url_for('allprojects', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block content %}
+<div class="menucontent">
+    <h2>This is about page you can write about anyting here.</h2>
+</div>
+{% endblock content %}

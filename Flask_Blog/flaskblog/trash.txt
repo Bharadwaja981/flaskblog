@@ -1,0 +1,31 @@
+where userloginid =\""+str(curr  nent_user.userloginid)+"\"
+
+<table class="table table-striped" cellpadding="25px">
+        <thead>
+            <tr>
+                <th>projecttitle</th>
+                <th style="text-align: center">pmetadata</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    <td style="font-size: 20px font-weight: 20">{{ row.0 }}</td>
+                    <td style="font-size: 16px">{{ row.1 }}</td>
+                </tr>
+            {% endfor %}    
+        </tbody>
+    </table>
+</div>
+
+@app.route("/allprojects", methods=['GET', 'POST'])
+def myprojects():
+    #page = request.args.get('page', 1, type=int)
+    #conn=sql.connect("flaskblog/site.db") 
+    #cur = conn.cursor()
+    #cur.execute("select projecttitle,pmetadata from Projects")
+    #data = cur.fetchall()
+    #print(data)
+    page = request.args.get('page', 1, type=int)
+    projects = Projects.query.paginate(page=page, per_page=1)
+    return render_template('myprojects.html', title='Projects', projects=projects)

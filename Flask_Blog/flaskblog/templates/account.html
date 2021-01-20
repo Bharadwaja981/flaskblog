@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section menucontent">
+    <h1>{{ current_user.firstname }}</h1>
+    <h1>{{ current_user.lastname }}</h1>
+    <h1>{{ current_user.collegeid }}</h1>
+    <h1>{{ current_user.profession }}</h1>
+</div>
+{% endblock content %}

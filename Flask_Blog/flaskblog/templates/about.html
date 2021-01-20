@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>About Page</h1>
+    {% if current_user.is_authenticated %}
+    <h1>current user profession : {{current_user.profession}} </h1>
+    <p class="article-content">your login Id is:: {{current_user.userloginid}}</p>
+{%endif%}
+
+{% endblock content %}

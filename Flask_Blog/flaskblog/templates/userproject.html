@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content1 %}
+<div class="content-section menucontent">
+    <article class="media content-section">
+        <div class="media-body">
+            <h2 class="article-title">Project Name : {{ project.projecttitle }}</h2>
+            {% if project.userloginid == current_user.userloginid %}
+                <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('updateproject', project_id=project.id) }}">Update</a>
+                    <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                    <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('downloadproject', project_id=project.id) }}">Download</a>
+                </div>
+            {% elif  current_user.profession.lower().startswith('s')%}
+                <div>
+                  <style>
+                    .slow .toggle-group { transition: left 0.7s; -webkit-transition: left 0.7s; }
+                  </style>
+                    <a class="btn btn-primary btn-sm mt-1 mb-1" href="{{ url_for('downloadproject', project_id=project.id) }}">Download</a>
+                    <input id="wanted" type="checkbox" data-toggle="toggle" data-on="Intrested" data-style="slow" data-off="Not Intrested" data-onstyle="success" data-offstyle="danger" data-size="small">
+                </div>
+                
+            {% endif %}
+            <small>Project metadata</small>
+            <p class="article-content">{{ project.pmetadata }}</p>  
+            <small>Project Description</small>
+            <p class="article-content">{{ project.pdescription }}</p> 
+        </div>
+    </article>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Delete Project?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <form action="{{ url_for('deleteproject', project_id=project.id) }}" method="POST">
+              <input class="btn btn-danger" type="submit" value="Delete">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="menucontent">
+    <h2>This is about page you can write about anyting here.</h2>
+</div>
+{% endblock content %}
